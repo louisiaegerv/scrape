@@ -10,6 +10,7 @@ let fs = require('fs');
 let Scraper = require('./Scraper');
 let Pack = require('./Mongo').Pack;
 let Card = require('./Mongo').Card;
+let card = new Card();
 
 // ------------ FILES/DB -------------- //
 // Where you want the data to be saved
@@ -88,7 +89,6 @@ let save = {
 		});
 	},
 	saveCards: (arr) => {
-		let card = new Card();
 		save.clearCollection(card.CardModel);
 		arr.forEach((item) => {
 			save.saveToDB(item, card.CardModel);
