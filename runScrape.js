@@ -20,7 +20,7 @@ let cardSaveFile = './db/testcardsDB.json';
 // 1) SCRAPE PACKS & CREATE ARRAY OF LINKS TO CARDS
 let packs = {
 	url: `https://www.db.yugioh-card.com/yugiohdb/card_list.action`,
-	
+
 	scrapePacks: function() {
 		let packScraper = new Scraper(this.url);
 		packScraper.on('complete', (packArr) => {
@@ -59,7 +59,7 @@ let cards = {
 
 		let url = this.packLinks.pop();
 		let cardScraper = new Scraper(url);
-		
+
 		console.log('Requests Left: ' + this.packLinks.length);
 
 		cardScraper.on('error', (err) => {
@@ -110,7 +110,9 @@ let save = {
 	// SAVE CARD DATA TO .JSON FILE
 	writeJSONFile: ( (arr, file) => {
 		fs.writeFile(file, JSON.stringify(arr), (err) => {
-			if (err) throw console.log(err);
+			if (err) {
+				console.log(err);
+			};
 			console.log(`\n ${file} File saved.`);
 		})
 	})
